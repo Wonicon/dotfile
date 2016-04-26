@@ -1,0 +1,97 @@
+set nocompatible              " be iMproved, required
+set shell=bash
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+
+" plugin on GitHub repo
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'sickill/vim-monokai'
+Plugin 'dag/vim-fish'
+Plugin 'verilog_systemverilog.vim'
+Plugin 'nachumk/systemverilog.vim'
+Plugin 'lilydjwg/fcitx.vim'
+Plugin 'miripiruni/vim-better-css-indent'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'junegunn/vim-easy-align'
+
+" plugin from http://vim-scripts.org/vim/scripts.html
+"Plugin 'L9'
+
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+"Plugin 'user/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+set showcmd
+set number
+set autoindent
+set cindent
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set noswapfile
+set backspace=2
+
+autocmd FileType make set noexpandtab
+
+autocmd FileType verilog_systemverilog set foldmethod=syntax
+autocmd FileType ruby set tabstop=2
+autocmd FileType ruby set shiftwidth=2
+autocmd FileType eruby set tabstop=2
+autocmd FileType eruby set shiftwidth=2
+
+" C switch indent settings
+set cinoptions=:0l1
+
+syntax enable
+colorscheme monokai
+
+set laststatus=2
+set statusline=%t
+set statusline+=[%{strlen(&fenc)?&fenc:'none'},
+set statusline+=%{&ff}]
+set statusline+=%m
+set statusline+=%r
+set statusline+=%y
+set statusline+=%=
+set statusline+=%c,
+set statusline+=%l/%L
+
+set mouse=a
+
+"hi Normal ctermbg=none
