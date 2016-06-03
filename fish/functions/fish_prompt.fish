@@ -18,7 +18,7 @@ function fish_prompt
     if [ (_git_branch_name) ]
         echo -sn $red " " (_git_branch_name)
         if [ (_is_git_dirty) ]
-            echo -sn (set_color normal) " (╯°Д°)╯ "
+            echo -sn (set_color normal) " ヾ(;ﾟдﾟ)/ "
         else
             echo -sn (set_color normal) " (*´ ▽ `*) "
         end

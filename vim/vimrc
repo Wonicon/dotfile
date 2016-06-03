@@ -26,6 +26,7 @@ Plugin 'lilydjwg/fcitx.vim'
 Plugin 'miripiruni/vim-better-css-indent'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -71,6 +72,8 @@ set backspace=2
 
 autocmd FileType make set noexpandtab
 
+set foldmethod=syntax
+
 autocmd FileType verilog_systemverilog set foldmethod=syntax
 autocmd FileType ruby set tabstop=2
 autocmd FileType ruby set shiftwidth=2
@@ -94,6 +97,22 @@ set statusline+=%=
 set statusline+=%c,
 set statusline+=%l/%L
 
-set mouse=a
+set mouse=c
+
+" thx to http://dhruvasagar.com/2013/03/28/vim-better-foldtext
+function! NeatFoldText()
+  let foldchar = matchstr(&fillchars, 'fold:\zs.')
+  let raw = getline(v:foldstart)
+  let strip = substitute(raw, '^\s*', '', 'g')
+  echo len(raw) - len(strip)
+  let line = repeat(foldchar, len(raw) - len(strip)) . strip
+  let lines_count = v:foldend - v:foldstart + 1
+  let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
+  let foldtextstart = strpart(line, 0, (winwidth(0) * 2) / 3)
+  let foldtextend = lines_count_text . repeat(foldchar, 8)
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextstart . repeat(foldchar, winwidth(0) - foldtextlength) . foldtextend
+endfunction
+set foldtext=NeatFoldText()
 
 "hi Normal ctermbg=none
