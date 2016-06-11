@@ -4,7 +4,8 @@ set --export PATH $PATH $HOME/clion-2016.1.1/bin
 set --export PATH $PATH $HOME/clion-2016.1.1/bin/cmake/bin
 
 # MIPS cross compiler
-set --export PATH $PATH $HOME/mgc/embedded/codebench/bin
+#set --export PATH $PATH $HOME/mgc/embedded/codebench/bin
+set --export PATH $PATH $HOME/CodeSourcery/Sourcery_G++_Lite/bin
 
 # Init vivado
 #set --export XILINX_VIVADO $HOME/Software/Vivado/2016.1
@@ -29,4 +30,11 @@ function sp2ud
         echo "mv $i"
         mv $i (echo $i | sed "s/ /_/g")
     end
+end
+
+# Quick publish
+function gh-page
+    git add -A
+    git commit -m 'Update'
+    git push origin gh-pages
 end
